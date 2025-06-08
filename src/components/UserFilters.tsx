@@ -28,19 +28,19 @@ export default function UserFilters({
                 <span>Status:</span>
                 <button
                     onClick={() => setFiltroDisponivel('disponivel')}
-                    className={`btn-base btn-success px-2 py-1 rounded ${filtroDisponivel === 'disponivel' ? "bg-green-500 text-white" : "bg-gray-200"}`}
+                    className={`btn-base btn-success px-2 py-1 rounded ${filtroDisponivel === 'disponivel' ? "opacity-75" : ""}`}
                 >
                     Disponíveis
                 </button>
                 <button
                     onClick={() => setFiltroDisponivel('indisponivel')}
-                    className={`btn-base btn-error px-2 py-1 rounded ${filtroDisponivel === 'indisponivel' ? "bg-red-500 text-white" : "bg-gray-200"}`}
+                    className={`btn-base btn-error px-2 py-1 rounded ${filtroDisponivel === 'indisponivel' ? "opacity-75" : ""}`}
                 >
                     Indisponíveis
                 </button>
                 <button
                     onClick={() => setFiltroDisponivel('todos')}
-                    className={`btn-base px-2 py-1 rounded ${filtroDisponivel === 'todos' ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+                    className={`btn-base px-2 py-1 rounded bg-blue-500 ${filtroDisponivel === 'todos' ? "opacity-75" : ""}`}
                 >
                     Todos
                 </button>
