@@ -28,19 +28,19 @@ export default function UserFilters({
                 <span>Status:</span>
                 <button
                     onClick={() => setFiltroDisponivel('disponivel')}
-                    className={`btn-base btn-success px-2 py-1 rounded ${filtroDisponivel === 'disponivel' ? "opacity-75" : ""}`}
+                    className={`btn-base btn-success px-3 py-2 rounded ${filtroDisponivel === 'disponivel' ? "selected" : ""}`}
                 >
                     Disponíveis
                 </button>
                 <button
                     onClick={() => setFiltroDisponivel('indisponivel')}
-                    className={`btn-base btn-error px-2 py-1 rounded ${filtroDisponivel === 'indisponivel' ? "opacity-75" : ""}`}
+                    className={`btn-base btn-error px-3 py-2 rounded ${filtroDisponivel === 'indisponivel' ? "selected" : ""}`}
                 >
                     Indisponíveis
                 </button>
                 <button
                     onClick={() => setFiltroDisponivel('todos')}
-                    className={`btn-base px-2 py-1 rounded bg-blue-500 ${filtroDisponivel === 'todos' ? "opacity-75" : ""}`}
+                    className={`btn-base px-3 py-2 rounded bg-blue-500 ${filtroDisponivel === 'todos' ? "selected" : ""}`}
                 >
                     Todos
                 </button>
@@ -53,7 +53,7 @@ export default function UserFilters({
                     <select
                         value={orderBy}
                         onChange={(e) => setOrderBy(e.target.value as "nome" | "status")}
-                        className="select-base border px-2 py-1 rounded"
+                        className="select-base border px-3 py-2 rounded"
                     >
                         <option value="nome">Nome</option>
                         <option value="status">Status</option>
@@ -64,7 +64,7 @@ export default function UserFilters({
                     <select
                         value={orderDirection}
                         onChange={(e) => setOrderDirection(e.target.value as "asc" | "desc")}
-                        className="select-base border px-2 py-1 rounded"
+                        className="select-base border px-3 py-2 rounded"
                     >
                         <option value="asc">Ascendente</option>
                         <option value="desc">Descendente</option>
@@ -75,7 +75,7 @@ export default function UserFilters({
             {/* Limpar preferências */}
             <button
                 onClick={onClear}
-                className="btn-base bg-gray-500 text-white px-3 py-1 rounded"
+                className="btn-base px-3 py-2 rounded"
             >
                 Limpar Preferências
             </button>

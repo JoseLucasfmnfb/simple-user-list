@@ -1,18 +1,39 @@
 .btn-base {
     cursor: pointer;
     transition: all ease 0.3s;
-
-    &.btn-success {
-        background-color: #22c55e;
-        color: white;
-    }
-
-    &.btn-error {
-        background-color: #ef4444;
-        color: white;
-    }
-
+    background-color: white;
+    border: solid 1px #2b7fff;
     &:hover {
-        opacity: 0.8;
+        background-color: #2b7fff;
+        color: white;
+    }
+    &.selected {
+        background-color: #2b7fff;
+        color: white;
+    }
+    &.btn-success {
+        border: solid 1px #22c55e;
+        color: #171717;
+        &:hover {
+            color: white;
+            background-color: #22c55e;
+        }
+        &.selected{
+            background-color: #22c55e;
+            color: white;
+        }
+    }
+    &.btn-error {
+        background-color: white;
+        color: #171717;
+        border: solid 1px #ef4444;
+        &:hover {
+            color: white;
+            background-color: #ef4444;
+        }
+        &.selected {
+            color: white;
+            background-color: #ef4444;
+        }
     }
 }
