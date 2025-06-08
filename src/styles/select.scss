@@ -1,0 +1,50 @@
+.select-base {
+  appearance: none;
+  background-color: #fff;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: #0070f3;
+    box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+  }
+
+  &.select-success {
+    border-color: #22c55e;
+    background-color: #dcfce7;
+    color: #166534;
+  }
+
+  &.select-error {
+    border-color: #ef4444;
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+
+  .select-base {
+    width: 100%;
+    padding-right: 2rem;
+  }
+
+  &::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+    font-size: 0.75rem;
+  }
+}

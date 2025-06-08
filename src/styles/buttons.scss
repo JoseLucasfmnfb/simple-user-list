@@ -1,0 +1,18 @@
+.btn-base {
+    cursor: pointer;
+    transition: all ease 0.3s;
+
+    &.btn-success {
+        background-color: #22c55e;
+        color: white;
+    }
+
+    &.btn-error {
+        background-color: #ef4444;
+        color: white;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

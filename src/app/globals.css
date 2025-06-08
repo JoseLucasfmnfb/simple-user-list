@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import '../styles/buttons.scss';
+@import '../styles/select.scss';
 
 :root {
   --background: #ffffff;
