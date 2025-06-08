@@ -10,20 +10,30 @@ type Usuario = {
 };
 
 type FiltroDisponivel = "disponivel" | "indisponivel" | "todos";
+type OrderBy = "nome" | "status" | "";
+type OrderDirection = "asc" | "desc" | "";
 
 export default function Home() {
 	const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 	const [erro, setErro] = useState("");
 	const [localizacao, setLocalizacao] = useState<string | null>(null);
 	const [filtroDisponivel, setFiltroDisponivel] = useState<FiltroDisponivel>('todos');
-	const [orderBy, setOrderBy] = useState<"nome" | "status">("nome");
-	const [orderDirection, setOrderDirection] = useState<"asc" | "desc">("asc");
+	const [orderBy, setOrderBy] = useState<OrderBy>("");
+	const [orderDirection, setOrderDirection] = useState<OrderDirection>("");
 
 	// Carrega filtro do localStorage
 	useEffect(() => {
-		const stored = localStorage.getItem("filtroDisponivel");
-		if (stored === "disponivel" || stored === "indisponivel" || stored === "todos") {
-			setFiltroDisponivel(stored);
+		const storedStatus = localStorage.getItem("filtroDisponivel") as FiltroDisponivel | null;
+		const storedOrder = localStorage.getItem("orderBy") as OrderBy | null;
+		const storedDirrection = localStorage.getItem("orderDirection") as OrderDirection | null;
+		if (storedStatus) {
+			setFiltroDisponivel(storedStatus);
+		}
+		if (storedOrder) {
+			setOrderBy(storedOrder)
+		}
+		if (storedDirrection) {
+			setOrderDirection(storedDirrection)
 		}
 	}, []);
 
@@ -31,6 +41,14 @@ export default function Home() {
 	useEffect(() => {
 		localStorage.setItem("filtroDisponivel", filtroDisponivel);
 	}, [filtroDisponivel]);
+
+	useEffect(() => {
+		localStorage.setItem("orderBy", orderBy);
+	}, [orderBy]);
+
+	useEffect(() => {
+		localStorage.setItem("orderDirection", orderDirection);
+	}, [orderDirection]);
 
 	useEffect(() => {
 		// Chamada da API
@@ -83,14 +101,18 @@ export default function Home() {
 	const limparPreferencias = () => {
 		setFiltroDisponivel("todos");
 		localStorage.removeItem("filtroDisponivel");
-		setOrderBy("nome");
-		setOrderDirection("asc");
+		localStorage.removeItem("orderBy");
+		localStorage.removeItem("orderDirection");
+		setOrderBy("");
+		setOrderDirection("");
 	};
 
 	return (
 		<main className="p-8 font-sans">
 			<h1 className="text-2xl font-bold mb-4">Lista de Usuários</h1>
-			{localizacao && <p className="mb-4 text-sm text-white-600">Sua localização: {localizacao}</p>}
+			{localizacao && (
+				<p className="mb-4 text-sm text-white-600">Sua localização: {localizacao}</p>
+			)}
 			<UserFilters
 				filtroDisponivel={filtroDisponivel}
 				setFiltroDisponivel={setFiltroDisponivel}
@@ -100,8 +122,12 @@ export default function Home() {
 				setOrderDirection={setOrderDirection}
 				onClear={limparPreferencias}
 			/>
-			{erro ? <p className="text-red-600">{erro}</p> : <UserList usuarios={usuariosFiltrados} />}
-			{erro && <ModalResponse type="error" message={erro} onClose={() => setErro('')} />}
+			{usuariosFiltrados && (
+				<UserList usuarios={usuariosFiltrados} />
+			)}
+			{erro && (
+				<ModalResponse type="error" message={erro} onClose={() => setErro('')} />
+			)}
 		</main>
 	);
 }

@@ -1,14 +1,16 @@
 "use client";
 
 type FiltroDisponivel = "disponivel" | "indisponivel" | "todos";
+type OrderBy = "" | "nome" | "status";
+type OrderDirection = "" | "asc" | "desc";
 
 type UserFiltersProps = {
     filtroDisponivel: FiltroDisponivel;
     setFiltroDisponivel: (value: FiltroDisponivel) => void;
-    orderBy: "nome" | "status";
-    setOrderBy: (value: "nome" | "status") => void;
-    orderDirection: "asc" | "desc";
-    setOrderDirection: (value: "asc" | "desc") => void;
+    orderBy: OrderBy;
+    setOrderBy: (value: OrderBy) => void;
+    orderDirection: OrderDirection;
+    setOrderDirection: (value: OrderDirection) => void;
     onClear: () => void;
 };
 
@@ -48,17 +50,19 @@ export default function UserFilters({
 
             {/* Ordenação */}
             <div className="flex gap-2 items-center">
-                <span>Ordenar por:</span>
+                <span>Ordenar por Atributo:</span>
                 <div className="select-wrapper">
                     <select
                         value={orderBy}
                         onChange={(e) => setOrderBy(e.target.value as "nome" | "status")}
                         className="select-base border px-3 py-2 rounded"
                     >
+                        <option value="">Selecione o atributo</option>
                         <option value="nome">Nome</option>
                         <option value="status">Status</option>
                     </select>
                 </div>
+                <span>Ordem:</span>
                 <div className="select-wrapper">
 
                     <select
@@ -66,6 +70,7 @@ export default function UserFilters({
                         onChange={(e) => setOrderDirection(e.target.value as "asc" | "desc")}
                         className="select-base border px-3 py-2 rounded"
                     >
+                        <option value="">Selecione a ordem</option>
                         <option value="asc">Ascendente</option>
                         <option value="desc">Descendente</option>
                     </select>
